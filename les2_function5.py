@@ -1,14 +1,12 @@
-def averanger():
-    sum = 0
-    kol = 0
-    def coun(val):
-        nonlocal sum, kol
-        sum += val
-        kol += 1
-        print(sum / kol)
-    return coun
-func = averanger()
+#3. Написать функцию is_prime, принимающую 1 аргумент — число от 0 до 1000,
+# и возвращающую True, если оно простое, и False - иначе.
 
-for i in range(1,43,11):
-    func(i)
+def is_prime (x):
+    for i in range(2, x-1):
+        if x % i == 0:
+            print("Составное")
+            break
+    else:
+        print("Простое")
 
+is_prime(462)
