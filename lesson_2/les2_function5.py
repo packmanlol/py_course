@@ -9,4 +9,4 @@ def is_prime (x):
     else:
         print("Простое")
 
-is_prime(462)
+is_prime(463)
