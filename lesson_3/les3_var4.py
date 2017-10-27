@@ -23,6 +23,9 @@ try:
 except IndexError:
     print("Неверные данные, проверьте корректность данных в файле")
     exit()
+except ValueError:
+    print("Неверные данные, проверьте корректность данных в файле")
+    exit()
 
 #Поиск книг по году изданияи и сортировка результата по алфавиту
 year = input("Введите год издания книг: ")
@@ -43,9 +46,6 @@ with open("books_out.txt", "w") as my_file:
         for cols in rows:
             my_file.write(str(cols)+", ")
         else:
-            my_file.write("\n")
+           my_file.write("\n")
 
-
-
-print(list_books)
 
