@@ -11,4 +11,3 @@ for dir_path, dirs, files in os.walk(upath):
     file_lst = list(map(lambda x: "file: "+str(x), files))
     print('\n'.join(dir_lst+file_lst))
     break
-
