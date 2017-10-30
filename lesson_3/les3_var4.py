@@ -1,3 +1,4 @@
+
 def search_for_records(lst, data, col_num):
     search_rezults=[]
     for row_num, record in enumerate(lst):
@@ -14,12 +15,13 @@ except FileNotFoundError:
 
 #Убираем пробелы и разделители в начале и конце элеметов списка
 #Приводим типы данных
+price_pos = 3
 try:
     for row_num, row_data in enumerate(list_books):
         list_books[row_num] = row_data.split(",")
         for col_num, col_data in enumerate(list_books[row_num]):
             list_books[row_num][col_num] = col_data.strip()
-        list_books[row_num][3] = int(list_books[row_num][3])
+        list_books[row_num][price_pos] = int(list_books[row_num][price_pos])
 except IndexError:
     print("Неверные данные, проверьте корректность данных в файле")
     exit()
@@ -47,5 +49,3 @@ with open("books_out.txt", "w") as my_file:
             my_file.write(str(cols)+", ")
         else:
            my_file.write("\n")
-
-
