@@ -50,6 +50,7 @@ class Complex:
         temp.im = abs(self) ** power * math.sin(power * self.fi())
         return temp
 
+    #Почему возвращается список с элементами последней итерации цикла
     def root(self, power):
         lst = []
         temp = Complex()
