@@ -1,0 +1,67 @@
+1.
+SELECT product.maker, pc.model, pc.speed, pc.hd 
+FROM PC INNER JOIN product ON product.model = pc.model 
+WHERE pc.price < '45000';
+
+  maker   | model | speed |  hd  
+----------+-------+-------+------
+ DNS      | 2     |  2.78 |  500
+ XeroX    | 10    |  1.81 |  120
+ DNS      | 2     |  1.93 | 2000
+ HP       | 15    |  3.34 | 2000
+ GYGABYTE | 3     |  1.87 | 6000
+ EPSON    | 14    |   2.8 |  120
+(6 rows)
+
+
+2.
+SELECT DISTINCT maker 
+FROM product 
+WHERE type = 'Printer';
+ maker 
+-------
+ XeroX
+ EPSON
+ HP
+(3 rows)
+
+3.
+
+SELECT product.maker, laptop.model, laptop.hd, laptop.screen 
+FROM laptop 
+INNER JOIN product ON product.model = laptop.model 
+WHERE laptop.price >'50000';
+
+ maker | model |  hd  | screen 
+-------+-------+------+--------
+ DNS   | 11    | 1000 |     15
+ HP    | 12    |  320 |     17
+ DNS   | 11    |  500 |     17
+
+4.
+
+SELECT * FROM printer where color = TRUE;
+
+ code | model | color |  type  |    price     
+------+-------+-------+--------+--------------
+ 1    | 9     | t     | Jet    | 3 695.00 руб
+ 2    | 9     | t     | Matrix | 9 748.00 руб
+ 3    | 9     | t     | Laser  | 4 750.00 руб
+ 5    | 9     | t     | Matrix | 6 890.00 руб
+ 7    | 8     | t     | Laser  | 2 980.00 руб
+ 9    | 8     | t     | Jet    | 2 893.00 руб
+ 11   | 8     | t     | Jet    | 4 106.00 руб
+(7 rows)
+
+5.
+
+SELECT product.maker, pc.model, pc.speed, pc.hd 
+FROM PC INNER JOIN product ON product.model = pc.model 
+WHERE (pc.cd = '12x' OR pc.cd = '24x') AND pc.price < '45000';
+
+ maker | model | speed | hd  
+-------+-------+-------+-----
+ XeroX | 10    |  1.81 | 120
+ EPSON | 14    |   2.8 | 120
+(2 rows)
+

@@ -1,0 +1,246 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.10
+-- Dumped by pg_dump version 9.5.10
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: laptop; Type: TABLE; Schema: public; Owner: test
+--
+
+CREATE TABLE laptop (
+    code character varying(20) NOT NULL,
+    model character varying(20) NOT NULL,
+    speed real NOT NULL,
+    ram integer NOT NULL,
+    hd integer NOT NULL,
+    price money NOT NULL,
+    screen integer NOT NULL
+);
+
+
+ALTER TABLE laptop OWNER TO test;
+
+--
+-- Name: pc; Type: TABLE; Schema: public; Owner: test
+--
+
+CREATE TABLE pc (
+    code character varying(20) NOT NULL,
+    model character varying(20) NOT NULL,
+    speed real NOT NULL,
+    ram integer NOT NULL,
+    hd integer NOT NULL,
+    cd character varying(3) NOT NULL,
+    price money NOT NULL
+);
+
+
+ALTER TABLE pc OWNER TO test;
+
+--
+-- Name: printer; Type: TABLE; Schema: public; Owner: test
+--
+
+CREATE TABLE printer (
+    code character varying(20) NOT NULL,
+    model character varying(20) NOT NULL,
+    color boolean NOT NULL,
+    type character varying(6) NOT NULL,
+    price money NOT NULL
+);
+
+
+ALTER TABLE printer OWNER TO test;
+
+--
+-- Name: product; Type: TABLE; Schema: public; Owner: test
+--
+
+CREATE TABLE product (
+    maker character varying(20) NOT NULL,
+    model character varying(20) NOT NULL,
+    type character varying(20) NOT NULL
+);
+
+
+ALTER TABLE product OWNER TO test;
+
+--
+-- Data for Name: laptop; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY laptop (code, model, speed, ram, hd, price, screen) FROM stdin;
+1	11	2.57999992	16	500	27 639.00 руб	15
+2	7	2.86999989	8	500	45 568.00 руб	17
+3	11	2.47000003	2	1000	59 168.00 руб	15
+4	12	1.79999995	8	320	59 857.00 руб	17
+5	11	2.51999998	2	500	54 264.00 руб	17
+6	11	3.93000007	2	120	28 249.00 руб	14
+7	11	1.49000001	2	500	38 702.00 руб	20
+\.
+
+
+--
+-- Data for Name: pc; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY pc (code, model, speed, ram, hd, cd, price) FROM stdin;
+1	2	2.77999997	32	500	16x	19 999.00 руб
+2	2	3.80999994	4	500	24x	54 472.00 руб
+3	10	1.80999994	2	120	12x	44 884.00 руб
+4	2	3.5	2	120	24x	70 293.00 руб
+5	2	1.92999995	8	2000	4x	44 753.00 руб
+6	15	3.33999991	8	2000	2x	42 900.00 руб
+7	10	1.02999997	32	6000	2x	66 728.00 руб
+8	14	3.81999993	4	120	4x	78 114.00 руб
+9	15	1.63999999	2	6000	8x	75 776.00 руб
+10	3	1.87	16	6000	2x	40 565.00 руб
+11	4	3.05999994	4	3000	4x	64 946.00 руб
+12	1	3.79999995	32	2000	2x	79 310.00 руб
+13	14	2.79999995	8	120	24x	24 109.00 руб
+14	2	3.91000009	8	3000	2x	54 698.00 руб
+\.
+
+
+--
+-- Data for Name: printer; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY printer (code, model, color, type, price) FROM stdin;
+1	9	t	Jet	3 695.00 руб
+2	9	t	Matrix	9 748.00 руб
+3	9	t	Laser	4 750.00 руб
+4	6	f	Jet	10 244.00 руб
+5	9	t	Matrix	6 890.00 руб
+6	6	f	Matrix	7 145.00 руб
+7	8	t	Laser	2 980.00 руб
+8	9	f	Laser	3 118.00 руб
+9	8	t	Jet	2 893.00 руб
+10	6	f	Jet	7 117.00 руб
+11	8	t	Jet	4 106.00 руб
+\.
+
+
+--
+-- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: test
+--
+
+COPY product (maker, model, type) FROM stdin;
+DNS	1	PC
+DNS	2	PC
+GYGABYTE	3	PC
+ASUS	4	PC
+EPSON	5	PC
+EPSON	6	Printer
+GYGABYTE	7	Laptop
+XeroX	8	Printer
+HP	9	Printer
+XeroX	10	PC
+DNS	11	Laptop
+HP	12	Laptop
+XeroX	13	Laptop
+EPSON	14	PC
+HP	15	PC
+\.
+
+
+--
+-- Name: key1; Type: CONSTRAINT; Schema: public; Owner: test
+--
+
+ALTER TABLE ONLY product
+    ADD CONSTRAINT key1 PRIMARY KEY (model);
+
+
+--
+-- Name: key2; Type: CONSTRAINT; Schema: public; Owner: test
+--
+
+ALTER TABLE ONLY pc
+    ADD CONSTRAINT key2 PRIMARY KEY (code, model);
+
+
+--
+-- Name: key3; Type: CONSTRAINT; Schema: public; Owner: test
+--
+
+ALTER TABLE ONLY laptop
+    ADD CONSTRAINT key3 PRIMARY KEY (code, model);
+
+
+--
+-- Name: key4; Type: CONSTRAINT; Schema: public; Owner: test
+--
+
+ALTER TABLE ONLY printer
+    ADD CONSTRAINT key4 PRIMARY KEY (code, model);
+
+
+--
+-- Name: relationship1; Type: FK CONSTRAINT; Schema: public; Owner: test
+--
+
+ALTER TABLE ONLY pc
+    ADD CONSTRAINT relationship1 FOREIGN KEY (model) REFERENCES product(model);
+
+
+--
+-- Name: relationship2; Type: FK CONSTRAINT; Schema: public; Owner: test
+--
+
+ALTER TABLE ONLY laptop
+    ADD CONSTRAINT relationship2 FOREIGN KEY (model) REFERENCES product(model);
+
+
+--
+-- Name: relationship3; Type: FK CONSTRAINT; Schema: public; Owner: test
+--
+
+ALTER TABLE ONLY printer
+    ADD CONSTRAINT relationship3 FOREIGN KEY (model) REFERENCES product(model);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
